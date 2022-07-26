@@ -15,9 +15,7 @@ export const CarList = () => {
         .then(result => 
             setCars(result))
     },[]);
-
-  console.log(cars);
-    
+     
   return (
     <Container>
       <Row>

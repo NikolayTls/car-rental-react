@@ -112,11 +112,22 @@ export const Reservation = () => {
 
   return (
     <>
-    {reservationId && <h4>Edit</h4>}
-      <Form onSubmit={onSubmit}>
+      {reservationId && <h4>Edit</h4>}
+      <Form
+        style={{ margin: "auto", width: "40%", border: "5px", padding: "10px" }}
+        onSubmit={onSubmit}
+      >
         <Form.Group className="mb-3">
-          <Form.Label size="lg">Car</Form.Label>
-          <Form.Select value={values.car} name="car" onChange={changeHandler}>
+          <Form.Label htmlFor="car" size="lg">
+            Car
+          </Form.Label>
+          <Form.Select
+            id="car"
+            className="form-control"
+            value={values.car}
+            name="car"
+            onChange={changeHandler}
+          >
             {cars.map((x) => (
               <option key={x.id} value={x.name}>
                 {x.name}
@@ -126,8 +137,14 @@ export const Reservation = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>City for the pickup</Form.Label>
-          <Form.Select value={values.city} name="city" onChange={changeHandler}>
+          <Form.Label htmlFor="city_pickup">City for the pickup</Form.Label>
+          <Form.Select
+            id="city_pickup"
+            className="form-control"
+            value={values.city}
+            name="city"
+            onChange={changeHandler}
+          >
             {cities.map((x) => (
               <option key={x.id} value={x.name}>
                 {x.name}
@@ -137,8 +154,12 @@ export const Reservation = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Station for the pickup</Form.Label>
+          <Form.Label htmlFor="station_pickup ">
+            Station for the pickup
+          </Form.Label>
           <Form.Select
+            id="station_pickup"
+            className="form-control"
             value={values.station}
             name="station"
             onChange={changeHandler}
@@ -157,8 +178,10 @@ export const Reservation = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>City for the dropoff</Form.Label>
+          <Form.Label htmlFor="city_dropoff">City for the dropoff</Form.Label>
           <Form.Select
+            id="city_dropoff"
+            className="form-control"
             value={values.city1}
             name="city1"
             onChange={changeHandler}
@@ -173,8 +196,12 @@ export const Reservation = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Station for the dropoff</Form.Label>
+          <Form.Label htmlFor="station_dropoff">
+            Station for the dropoff
+          </Form.Label>
           <Form.Select
+            id="station_dropoff"
+            className="form-control"
             value={values.station1}
             name="station1"
             onChange={changeHandler}
@@ -198,7 +225,7 @@ export const Reservation = () => {
           </Form.Label>
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button className="btn btn-primary btn-block mb-1" type="submit">
           Submit
         </Button>
       </Form>
