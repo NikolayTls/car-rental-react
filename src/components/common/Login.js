@@ -1,13 +1,40 @@
 import { Link } from "react-router-dom";
 import { NavBtnLink } from "../header/NavBarElements";
+import { useState, useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 export const Login = () => {
+  const [values, setValues] = useState({
+    username: "",
+    password: "",
+  });
+
+  let { loginUser } = useContext(AuthContext);
+
+  const changeHandler = (e) => {
+    setValues((state) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    loginUser(values);
+  };
+
   return (
     <>
       <div
-        style={{ margin: "auto", width: "40%", border: "5px", padding: "10px" }}
+        style={{
+          margin: "auto",
+          width: "40%",
+          border: "1px solid gray",
+          padding: "10px",
+        }}
       >
-        <div style = {{marginBottom: "50px" }}>
+        <div style={{ marginBottom: "50px", borderBottom: "1px solid gray" }}>
           <ul
             className="nav nav-pills nav-justified mb-3"
             id="ex1"
@@ -29,10 +56,15 @@ export const Login = () => {
             role="tabpanel"
             aria-labelledby="tab-login"
           >
-            <form>
+            <form onSubmit={onSubmit}>
               <div className="form-outline mb-4">
-                <input type="email" id="loginName" className="form-control" />
-                <label className="form-label" htmlFor="loginName">
+                <input
+                  type="text"
+                  name="username"
+                  className="form-control"
+                  onChange={changeHandler}
+                />
+                <label className="form-label" htmlFor="name">
                   Username
                 </label>
               </div>
@@ -40,22 +72,29 @@ export const Login = () => {
               <div className="form-outline mb-4">
                 <input
                   type="password"
-                  id="loginPassword"
+                  name="password"
                   className="form-control"
+                  onChange={changeHandler}
                 />
-                <label className="form-label" htmlFor="loginPassword">
+                <label className="form-label" htmlFor="password">
                   Password
                 </label>
               </div>
 
-              <button type="submit" className="btn btn-primary btn-block mb-4">
+              <button
+                type="submit"
+                className="btn btn-primary btn-block mb-4"
+              >
                 Sign in
               </button>
 
-              <div className="text-center">
-                <p>
-                  Not a member? <Link to="/register">Register</Link>
-                </p>
+              <div style={{ width: "20%" }} className="text-center">
+                <div>
+                  Not a member?{" "}
+                  <div style={{ display: "inline-block" }}>
+                    <Link to="/register">Register</Link>
+                  </div>
+                </div>
               </div>
             </form>
           </div>

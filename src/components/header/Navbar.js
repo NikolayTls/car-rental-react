@@ -10,31 +10,55 @@ import {
 
 import { FaCarAlt } from "react-icons/fa";
 
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
+
 const Navbar = () => {
+  let { user, logoutUser } = useContext(AuthContext);
+
   return (
     <>
       <Nav>
-        <NavLink to="/">
-          <FaCarAlt size="3em" />
-        </NavLink>
         <Bars />
         <NavMenu>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/my-reservations" activeStyle>
-            My Reservations
+          <NavLink to="/">
+            <FaCarAlt size="3em" />
           </NavLink>
+        </NavMenu>
+        <NavMenu>
+          {user && (
+            <p style={{ fontSize: "23px", fontWeight: "bold", color: "red" }}>
+              Hello {user.username}
+            </p>
+          )}
+          <NavLink to="/">Home</NavLink>
+          {user && (
+            <NavLink to="/my-reservations" activeStyle>
+              My Reservations
+            </NavLink>
+          )}
           <NavLink to="/cars" activeStyle>
             Cars
           </NavLink>
 
-          <NavLink to="/reservation" activeStyle>
-            Reservation
-          </NavLink>
+          {user && (
+            <NavLink to="/reservation" activeStyle>
+              Reservation
+            </NavLink>
+          )}
           {/* Second Nav */}
-          <NavBtnLink to="/register">Register</NavBtnLink>
+          {!user && (
+            <NavBtn>
+              <NavBtnLink to="/register">Register</NavBtnLink>
+            </NavBtn>
+          )}
         </NavMenu>
         <NavBtn>
-          <NavBtnLink to="/login">Login</NavBtnLink>
+          {!user ? (
+            <NavBtnLink to="/login">Login</NavBtnLink>
+          ) : (
+            <button onClick={logoutUser}>Logout</button>
+          )}
         </NavBtn>
       </Nav>
     </>

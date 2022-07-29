@@ -55,7 +55,7 @@ export const NavMenu = styled.div`
 `;
 
 export const NavBtn = styled.nav`
-  display: flex;
+  display: fixed;
   align-items: center;
   margin-right: 24px;
   /* Third Nav */
