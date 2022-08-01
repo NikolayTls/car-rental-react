@@ -12,14 +12,15 @@ import { AuthProvider } from "./context/AuthContext";
 
 import PrivateRoute from "./utils/PrivateRoute";
 
+import { Header } from "./components/header/Header";
+
 function App() {
   return (
     <AuthProvider>
-      <div>
-        <Navbar />
-        <br />
+        <Header />
+      
 
-        <Container>
+        <main style = {{marginTop:"65px"}}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cars" element={<CarList />} />
@@ -32,7 +33,7 @@ function App() {
               }
             />
             <Route
-              path="/reservation/:reservationId"
+              path="/reservation/edit/:reservationId"
               element={<Reservation />}
             />
             <Route
@@ -46,10 +47,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
-        </Container>
+        </main >
 
         <Footer />
-      </div>
     </AuthProvider>
   );
 }

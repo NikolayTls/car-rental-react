@@ -1,0 +1,68 @@
+
+.header {
+    height : 55px;
+    display : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    background-color: #221B1B;
+    position: fixed;
+    z-index:100;
+    top: 0;
+    left: 0;
+    right:0;
+}
+
+span{
+    margin-right: 6px;
+}
+
+
+.middle-section{
+    display : flex;
+    flex : 1;
+    margin-left: 30px;
+    margin-right: 70px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.right-section{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.car-logo {
+
+    margin-left:50px;    
+}
+
+
+.logout-btn{
+    border-radius: 4px;
+    background: #256ce1;
+    padding: 10px 22px;
+    color: #fff;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none;
+    margin-left: 24px;
+    transition: all 0.2s ease-in-out;
+
+}
+
+.logout-btn:hover{
+
+    background: #fff;
+    color: #010606;
+}
+
+.hello-user{
+    font-weight: bold;
+    font-size: 20px;
+    color: #15cdfc;
+}

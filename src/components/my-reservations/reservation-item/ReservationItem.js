@@ -1,5 +1,8 @@
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { DeleteModal } from "../DeleteModal";
+
 
 
 export const ReservationItem = ({
@@ -10,6 +13,7 @@ export const ReservationItem = ({
 }) => {
 
   let navigate = useNavigate();
+  const [modalShow, setModalShow] = useState(false);
 
 
   const deleteHandler = (id) => {
@@ -27,7 +31,7 @@ export const ReservationItem = ({
       <td>{reservations.price}$</td>
       <td>
         <Button
-          onClick = {() => navigate(`/reservation/${reservations.id}`)}
+          onClick = {() => navigate(`/reservation/edit/${reservations.id}`)}
           variant="success"
           size="md"
         >
@@ -35,10 +39,11 @@ export const ReservationItem = ({
         </Button>
       </td>
       <td>
-        <Button onClick={() => deleteHandler(reservations.id)} variant="danger">
+        <Button  onClick={() => setModalShow(true)} variant="danger">
           Delete
         </Button>
       </td>
+      <DeleteModal reservation = {reservations} deleteHandler = {deleteHandler} show={modalShow} onHide={() => setModalShow(false)} />
     </tr>
   );
 };

@@ -47,13 +47,18 @@ export const Reservation = () => {
     if (reservationId) {
       fetch(`http://127.0.0.1:8000/reservation/${reservationId}`)
         .then((res) => res.json())
-        .then((result) => console.log(result));
+        .then((result) => {
+          setValues(result);
+          setPrice(result.price);
+          //setDatePick(new Date(result.pickup_date));
+          //setDateDrop(new Date(result.dropoff_date));
+        });
     }
   }, [reservationId]);
 
   useEffect(() => {
     let [city] = cities.filter((x) => x.name === values.city);
-
+    
     if (city) {
       fetch(`http://127.0.0.1:8000/ajax/load-stations/${city.id}`)
         .then((res) => res.json())
@@ -91,7 +96,7 @@ export const Reservation = () => {
       .price_per_day;
 
     setPrice(diffDays * carPrice);
-  }, [date_pick, date_drop, cars, values.car]);
+  }, [date_pick, date_drop]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -112,7 +117,13 @@ export const Reservation = () => {
 
   return (
     <>
-      {reservationId && <h4>Edit</h4>}
+      {reservationId && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <h4 style={{ fontSize: "30px", fontWeight: "bold", color: "black" }}>
+            Edit Reservation
+          </h4>
+        </div>
+      )}
       <Form
         style={{ margin: "auto", width: "40%", border: "5px", padding: "10px" }}
         onSubmit={onSubmit}
@@ -154,7 +165,7 @@ export const Reservation = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="station_pickup ">
+          <Form.Label htmlFor="station_pickup">
             Station for the pickup
           </Form.Label>
           <Form.Select
@@ -174,7 +185,7 @@ export const Reservation = () => {
 
         <Form.Group className="mb-3">
           <Form.Label>Date for the pickup</Form.Label>
-          <DateTimePicker value={date_pick} onChange={setDatePick} />
+          <DateTimePicker format = 'dd:MM:yyyy hh:mm:ss' value={date_pick} onChange={setDatePick} />
         </Form.Group>
 
         <Form.Group className="mb-3">
@@ -216,14 +227,16 @@ export const Reservation = () => {
 
         <Form.Group className="mb-3">
           <Form.Label>Date for the dropoff</Form.Label>
-          <DateTimePicker value={date_drop} onChange={setDateDrop} />
+          <DateTimePicker format = 'dd:MM:yyyy hh:mm:ss' value={date_drop} onChange={setDateDrop} />
         </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label style={{ fontSize: "30px", fontWeight: "bold" }}>
-            Price : {price}$
-          </Form.Label>
-        </Form.Group>
+        {price > 0 && (
+          <Form.Group className="mb-3">
+            <Form.Label style={{ fontSize: "30px", fontWeight: "bold" }}>
+              Price : {price}$
+            </Form.Label>
+          </Form.Group>
+        )}
 
         <Button className="btn btn-primary btn-block mb-1" type="submit">
           Submit

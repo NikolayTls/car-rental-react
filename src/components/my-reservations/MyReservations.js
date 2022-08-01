@@ -12,8 +12,6 @@ export const MyReservations = () => {
   const [reservations, setReservations] = useState([]);
   const [spinner, setSpinner] = useState(false);
 
-
-
   useEffect(() => {
     setSpinner(true);
     reservationService.getReservations().then((reservation) => {
@@ -29,7 +27,6 @@ export const MyReservations = () => {
 
     setReservations(reservations.filter((x) => x.id !== reservationId));
   };
-
 
   return (
     <Row>
