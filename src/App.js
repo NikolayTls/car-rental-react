@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./components/home/Home";
 import { Reservation } from "./components/reservation/Reservation";
 import { MyReservations } from "./components/my-reservations/MyReservations";
-import { Login } from "./components/common/Login";
+import { Login } from "./components/common/login/Login";
 import { Register } from "./components/common/Register";
 import { AuthProvider } from "./context/AuthContext";
 

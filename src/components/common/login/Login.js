@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { NavBtnLink } from "../header/NavBarElements";
+import { NavBtnLink } from "../../header/NavBarElements";
 import { useState, useContext } from "react";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../../../context/AuthContext";
 import styles from "./login.module.css";
 
 export const Login = () => {
@@ -27,18 +27,7 @@ export const Login = () => {
 
   return (
     <div className={styles["img-cover"]}>
-      <div
-        style={{
-          width: "40%",
-          border: "3px solid black",
-          padding: "8px",
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          backgroundColor: "white",
-        }}
-      >
+      <div className = {styles['form-container']}>
         <div style={{ marginBottom: "50px", marginTop: "15px" }}>
           <ul
             className="nav nav-pills nav-justified mb-3"
@@ -62,7 +51,7 @@ export const Login = () => {
             aria-labelledby="tab-login"
           >
             <form onSubmit={onSubmit}>
-              <div className="form-outline mb-4">
+              <div className="form-outline mb-5">
                 <input
                   type="text"
                   name="username"
@@ -104,11 +93,11 @@ export const Login = () => {
               </div>
 
               <div style={{ width: "20%" }} className="text-center">
-                <div style={{ color: "white", fontWeight: "bold" }}>
+                <div style={{ color: "black", fontWeight: "bold" }}>
                   Not a member?{" "}
                   <div style={{ display: "inline-block" }}>
                     <Link to="/register">
-                      <span style={{ color: "white", fontWeight: "bold" }}>
+                      <span className = {styles.register}>
                         Register
                       </span>
                     </Link>
