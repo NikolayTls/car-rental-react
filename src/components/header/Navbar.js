@@ -13,6 +13,7 @@ import { FaCarAlt } from "react-icons/fa";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 
+
 const Navbar = () => {
   let { user, logoutUser } = useContext(AuthContext);
 
@@ -27,8 +28,8 @@ const Navbar = () => {
         </NavMenu>
         <NavMenu>
           {user && (
-            <p style={{ fontSize: "23px", fontWeight: "bold", color: "red" }}>
-              Hello {user.username}
+            <p>
+              Hello, {user.username}
             </p>
           )}
           <NavLink to="/">Home</NavLink>

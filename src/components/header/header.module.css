@@ -64,5 +64,5 @@ span{
 .hello-user{
     font-weight: bold;
     font-size: 20px;
-    color: #15cdfc;
+    color: rgba(121, 121, 121, 0.922);
 }

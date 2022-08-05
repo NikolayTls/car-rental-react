@@ -44,7 +44,7 @@ export const Header = () => {
       <div className={styles["right-section"]}>
         {!user && <NavBtnLink to="/login">Login</NavBtnLink>}
         {!user && <NavBtnLink to="/register">Register</NavBtnLink>}
-        {user && <span className={styles['hello-user']}>Hello {user.username}</span>}
+        {user && <span className={styles['hello-user']}>Hello, {user.username}</span>}
         {user && <button onClick = {logoutUser} className = {styles['logout-btn']}>Logout</button>}
       </div>
     </div>

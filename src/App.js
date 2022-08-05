@@ -5,7 +5,7 @@ import { Home } from "./components/home/Home";
 import { Reservation } from "./components/reservation/Reservation";
 import { MyReservations } from "./components/my-reservations/MyReservations";
 import { Login } from "./components/common/login/Login";
-import { Register } from "./components/common/Register";
+import { Register } from "./components/common/register/Register";
 import { AuthProvider } from "./context/AuthContext";
 
 import PrivateRoute from "./utils/PrivateRoute";

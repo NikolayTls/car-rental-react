@@ -1,19 +1,11 @@
-import { NavBtnLink } from "../header/NavBarElements";
-import styles from "./login.module.css";
+import { NavBtnLink } from "../../header/NavBarElements";
+import styles from "./register.module.css";
 
 export const Register = () => {
   return (
-    <div className = {styles['img-cover']}>
-      <div
-        style={{
-          margin: "auto",
-          width: "40%",
-          border: "1px solid gray",
-          padding: "10px",
-          marginTop: "250px",
-        }}
-      >
-        <div style={{ marginBottom: "50px", borderBottom: "1px solid gray" }}>
+    <div className={styles["img-cover"]}>
+      <div className={styles["form-container"]}>
+        <div className = {styles['nav-pills']}>
           <ul
             className="nav nav-pills nav-justified mb-3"
             id="ex1"
@@ -63,10 +55,11 @@ export const Register = () => {
               Repeat password
             </label>
           </div>
-
-          <button type="submit" className="btn btn-primary btn-block mb-3">
-            Sign up
-          </button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button type="submit" className={styles["register-btn"]}>
+              Sign up
+            </button>
+          </div>
         </form>
       </div>
     </div>

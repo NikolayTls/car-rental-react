@@ -8,7 +8,7 @@
   top: 0;
 }
 
-.login-btn {
+.register-btn {
   color: #fff;
   background-color: #256ce1;
   width: 210px;
@@ -18,21 +18,17 @@
   transition: all 0.2s ease-in-out;
 }
 
-.login-btn:hover {
+.register-btn:hover {
   transition: all 0.2s ease-in-out;
   background: #fff;
   color: #010606;
 }
 
-.register {
-  color: "black";
-  font-weight: "bold";
-  font-size: 17px;
-}
+
 
 .form-container {
   width: 40%;
-  height: 50%;
+  height: 60%;
   border: 3px solid black;
   padding: 8px;
   position: absolute;
@@ -47,9 +43,4 @@
   margin-top: 15px;
   border-bottom: 1px solid black;
   padding-bottom: 7px;
-}
-
-.input-label {
-  color: black;
-  font-weight: bold;
 }

@@ -28,7 +28,7 @@ export const Login = () => {
   return (
     <div className={styles["img-cover"]}>
       <div className = {styles['form-container']}>
-        <div style={{ marginBottom: "50px", marginTop: "15px" }}>
+        <div className = {styles['nav-pills']}>
           <ul
             className="nav nav-pills nav-justified mb-3"
             id="ex1"
@@ -59,9 +59,8 @@ export const Login = () => {
                   onChange={changeHandler}
                 />
                 <label
-                  className="form-label"
                   htmlFor="name"
-                  style={{ color: "black", fontWeight: "bold" }}
+                  className = {styles['input-label']}
                 >
                   Username
                 </label>
