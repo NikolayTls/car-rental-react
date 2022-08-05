@@ -1,0 +1,78 @@
+.fiat-button {
+  position: absolute;
+  left: 3%;
+  bottom: 3%;
+  background-color: transparent;
+  border: 1px solid black;
+  width: 200px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 7px;
+  transition: all 0.2s ease-in-out;
+}
+
+.fiat-button:hover {
+  background-color: lightgray;
+  box-shadow: 5px 10px #888888;
+  color: red;
+}
+
+.fiat-text {
+  color: black;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  font-weight: bold;
+  font-size: 20px;
+  width: 500px;
+}
+
+.fiat-img {
+  height: 500px;
+  transition: transform 0.2s;
+}
+
+.fiat-img:hover {
+  transform: scale(1.2);
+}
+
+.polo-button {
+  position: absolute;
+  left: 3%;
+  bottom: 3%;
+  background-color: transparent;
+  border: 1px solid white;
+  width: 200px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 7px;
+  transition: all 0.2s ease-in-out;
+  color: white;
+  transform: translate(-8%, -8%);
+}
+
+.polo-button:hover {
+  background-color: lightgray;
+  color: red;
+  box-shadow: 5px 10px white;
+}
+
+.polo-text {
+  color: white;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  font-weight: bold;
+  font-size: 20px;
+  width: 500px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.polo-img {
+  height: 500px;
+  transition: transform 0.2s;
+}
+
+.polo-img:hover {
+  transform: scale(1.2);
+}

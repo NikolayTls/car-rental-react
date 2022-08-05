@@ -24,6 +24,8 @@ export const Reservation = () => {
     station1: "BERLIN STEGLITZ",
   });
 
+  const [errors, setErrors] = useState({});
+
   let navigate = useNavigate();
 
   let { reservationId } = useParams();
@@ -50,15 +52,13 @@ export const Reservation = () => {
         .then((result) => {
           setValues(result);
           setPrice(result.price);
-          //setDatePick(new Date(result.pickup_date));
-          //setDateDrop(new Date(result.dropoff_date));
         });
     }
   }, [reservationId]);
 
   useEffect(() => {
     let [city] = cities.filter((x) => x.name === values.city);
-    
+
     if (city) {
       fetch(`http://127.0.0.1:8000/ajax/load-stations/${city.id}`)
         .then((res) => res.json())
@@ -88,12 +88,31 @@ export const Reservation = () => {
     }
   }, [values.city1, cities]);
 
+  const checkDatePick = (date) => {
+    setErrors((state) => ({
+      ...state,
+      pickup_date: date > date_drop,
+    }));
+  };
+
+  const checkDateDrop = (date) => {
+    setErrors((state) => ({
+      ...state,
+      dropoff_date: date < date_pick,
+    }));
+  };
+
   useEffect(() => {
     const diffTime = Math.abs(date_drop - date_pick);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    let carPrice;
 
-    let carPrice = cars.find((x) => x.name === values.car)?.category
-      .price_per_day;
+    if (date_pick > date_drop || date_drop < date_pick) {
+      carPrice = 0;
+      return;
+    }
+
+    carPrice = cars.find((x) => x.name === values.car)?.category.price_per_day;
 
     setPrice(diffDays * carPrice);
   }, [date_pick, date_drop]);
@@ -185,7 +204,42 @@ export const Reservation = () => {
 
         <Form.Group className="mb-3">
           <Form.Label>Date for the pickup</Form.Label>
-          <DateTimePicker format = 'dd:MM:yyyy hh:mm:ss' value={date_pick} onChange={setDatePick} />
+          {errors.pickup_date ? (
+            <div
+              style={{
+                border: "1px solid red",
+                paddingTop: "5px",
+                paddingBottom: "5px",
+              }}
+            >
+              <DateTimePicker
+                name="pickup"
+                format="dd:MM:yyyy hh:mm:ss"
+                value={date_pick}
+                onChange={setDatePick}
+                onCalendarClose={() => checkDatePick(date_pick)}
+              />
+              <h4 style={{ marginTop: "15px", color: "red" }}>
+                Pickup date cannot be after the dropoff date
+              </h4>
+            </div>
+          ) : (
+            <div
+              style={{
+                border: "1px solid gray",
+                paddingTop: "5px",
+                paddingBottom: "5px",
+              }}
+            >
+              <DateTimePicker
+                name="pickup"
+                format="dd:MM:yyyy hh:mm:ss"
+                value={date_pick}
+                onChange={setDatePick}
+                onCalendarClose={() => checkDatePick(date_pick)}
+              />
+            </div>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3">
@@ -227,7 +281,40 @@ export const Reservation = () => {
 
         <Form.Group className="mb-3">
           <Form.Label>Date for the dropoff</Form.Label>
-          <DateTimePicker format = 'dd:MM:yyyy hh:mm:ss' value={date_drop} onChange={setDateDrop} />
+          {errors.dropoff_date ? (
+            <div
+              style={{
+                border: "1px solid red",
+                paddingTop: "5px",
+                paddingBottom: "5px",
+              }}
+            >
+              <DateTimePicker
+                format="dd:MM:yyyy hh:mm:ss"
+                value={date_drop}
+                onChange={setDateDrop}
+                onCalendarClose={() => checkDateDrop(date_drop)}
+              />
+              <h4 style={{ marginTop: "15px", color: "red" }}>
+                Dropoff date cannot be before the pickup date
+              </h4>
+            </div>
+          ) : (
+            <div
+              style={{
+                border: "1px solid gray",
+                paddingTop: "5px",
+                paddingBottom: "5px",
+              }}
+            >
+              <DateTimePicker
+                format="dd:MM:yyyy hh:mm:ss"
+                value={date_drop}
+                onChange={setDateDrop}
+                onCalendarClose={() => checkDateDrop(date_drop)}
+              />
+            </div>
+          )}
         </Form.Group>
 
         {price > 0 && (
@@ -238,7 +325,11 @@ export const Reservation = () => {
           </Form.Group>
         )}
 
-        <Button className="btn btn-primary btn-block mb-1" type="submit">
+        <Button
+          className="btn btn-primary btn-block mb-1"
+          type="submit"
+          disabled={errors.pickup_date || errors.dropoff_date}
+        >
           Submit
         </Button>
       </Form>

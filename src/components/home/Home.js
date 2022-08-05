@@ -1,6 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import styles from "./home.module.css";
 
 export const Home = () => {
   let navigate = useNavigate();
@@ -50,8 +50,8 @@ export const Home = () => {
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h3>Happy BMW Week</h3>
+              <p>All BMW vehicles with 10% discount only this week</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -101,7 +101,14 @@ export const Home = () => {
       >
         <h2>The most wanted cars, if you need it only in the city</h2>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginLeft: "15px",
+          marginRight: "15px",
+        }}
+      >
         <div
           style={{
             display: "grid",
@@ -113,71 +120,36 @@ export const Home = () => {
             <img
               alt=""
               src="https://wallpapercave.com/wp/wp1837957.jpg"
-              style={{ height: "500px" }}
+              className = {styles["fiat-img"]}
             />
-            <div
-              style={{
-                color: "black",
-                position: "absolute",
-                top: "10px",
-                left: "0",
-                fontWeight: "bold",
-                fontSize: "20px",
-                width: "500px",
-              }}
-            >
+            <div className={styles["fiat-text"]}>
               If it is retro charm you are after, not many new cars come close
               to the chic Fiat 500.
             </div>
-            <Button
-              style={{
-                position: "absolute",
-                left: "20px",
-                bottom: "20px",
-                backgroundColor: "transparent",
-                border: "1px solid black",
-                width: "200px",
-                color: "black",
-              }}
+            <button
+              className={styles["fiat-button"]}
               onClick={() => navigate("/cars")}
             >
               Get your`s now
-            </Button>
+            </button>
           </div>
 
-          <div style={{ position: "relative", marginLeft: "15px" }}>
+          <div style={{ position: "relative", marginLeft: "15px" }} >
             <img
               alt=""
               src="https://wallpaperaccess.com/full/2718168.jpg"
-              style={{ height: "500px" }}
+              className = {styles["polo-img"]}
             />
-            <div
-              style={{
-                color: "white",
-                position: "absolute",
-                top: "10px",
-                left: "0",
-                fontWeight: "bold",
-                fontSize: "20px",
-                width: "500px",
-              }}
-            >
-              If it is retro charm you are after, not many new cars come close
-              to the chic Fiat 500.
+            <div id = "polo" className={styles["polo-text"]}>
+              Of course you can have high expectations for a small car. Discover
+              progressive design and smart technology in the new Polo.
             </div>
-            <Button
-              style={{
-                position: "absolute",
-                left: "20px",
-                bottom: "20px",
-                backgroundColor: "transparent",
-                border: "1px solid white",
-                width: "200px",
-              }}
+            <button
+              className={styles["polo-button"]}
               onClick={() => navigate("/cars")}
             >
               Get your`s now
-            </Button>
+            </button>
           </div>
         </div>
       </div>

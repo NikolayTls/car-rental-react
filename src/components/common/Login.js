@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { NavBtnLink } from "../header/NavBarElements";
 import { useState, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
+import styles from "./login.module.css";
 
 export const Login = () => {
   const [values, setValues] = useState({
@@ -25,16 +26,20 @@ export const Login = () => {
   };
 
   return (
-    <>
+    <div className={styles["img-cover"]}>
       <div
         style={{
-          margin: "auto",
           width: "40%",
-          border: "1px solid gray",
-          padding: "10px",
+          border: "3px solid black",
+          padding: "8px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          backgroundColor: "white",
         }}
       >
-        <div style={{ marginBottom: "50px", borderBottom: "1px solid gray" }}>
+        <div style={{ marginBottom: "50px", marginTop: "15px" }}>
           <ul
             className="nav nav-pills nav-justified mb-3"
             id="ex1"
@@ -64,7 +69,11 @@ export const Login = () => {
                   className="form-control"
                   onChange={changeHandler}
                 />
-                <label className="form-label" htmlFor="name">
+                <label
+                  className="form-label"
+                  htmlFor="name"
+                  style={{ color: "black", fontWeight: "bold" }}
+                >
                   Username
                 </label>
               </div>
@@ -76,23 +85,33 @@ export const Login = () => {
                   className="form-control"
                   onChange={changeHandler}
                 />
-                <label className="form-label" htmlFor="password">
+                <label
+                  className="form-label"
+                  htmlFor="password"
+                  style={{ color: "black", fontWeight: "bold" }}
+                >
                   Password
                 </label>
               </div>
 
-              <button
-                type="submit"
-                className="btn btn-primary btn-block mb-4"
-              >
-                Sign in
-              </button>
+              <div style = {{display: "flex", justifyContent: "center"}}>
+                <button
+                  type="submit"
+                  className= {styles['login-btn']}
+                >
+                  Sign in
+                </button>
+              </div>
 
               <div style={{ width: "20%" }} className="text-center">
-                <div>
+                <div style={{ color: "white", fontWeight: "bold" }}>
                   Not a member?{" "}
                   <div style={{ display: "inline-block" }}>
-                    <Link to="/register">Register</Link>
+                    <Link to="/register">
+                      <span style={{ color: "white", fontWeight: "bold" }}>
+                        Register
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -100,6 +119,6 @@ export const Login = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

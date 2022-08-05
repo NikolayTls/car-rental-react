@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import LoadingSpinner from "../Spinner";
 import * as reservationService from "../services/reservationService";
 
-
 export const MyReservations = () => {
   const [reservations, setReservations] = useState([]);
   const [spinner, setSpinner] = useState(false);
@@ -29,43 +28,43 @@ export const MyReservations = () => {
   };
 
   return (
-    <Row>
-      <Col md>
-        <div style={{ textAlign: "center", marginBottom: "25px" }}>
-          <h3>My Reservations</h3>
-        </div>
-        {spinner && <LoadingSpinner />}
-        <Card>
-          <Card.Body>
-            <Table striped bordered hover size="sm" variant="dark">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Car</th>
-                  <th>Pick up</th>
-                  <th>Date</th>
-                  <th>Drop off</th>
-                  <th>Date</th>
-                  <th>Price</th>
-                  <th>Update</th>
-                  <th>Remove</th>
-                </tr>
-              </thead>
+      <Row>
+        <Col md>
+          <div style={{ textAlign: "center", marginBottom: "25px" }}>
+            <h3>My Reservations</h3>
+          </div>
+          {spinner && <LoadingSpinner />}
+          <Card>
+            <Card.Body>
+              <Table striped bordered hover size="sm" variant="dark">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Car</th>
+                    <th>Pick up</th>
+                    <th>Date</th>
+                    <th>Drop off</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                {reservations.map((reservation, index) => (
-                  <ReservationItem
-                    index={index + 1}
-                    key={reservation.id}
-                    reservations={reservation}
-                    deleteReservationHandler={deleteReservationHandler}
-                  />
-                ))}
-              </tbody>
-            </Table>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
+                <tbody>
+                  {reservations.map((reservation, index) => (
+                    <ReservationItem
+                      index={index + 1}
+                      key={reservation.id}
+                      reservations={reservation}
+                      deleteReservationHandler={deleteReservationHandler}
+                    />
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
   );
 };
