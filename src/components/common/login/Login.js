@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { NavBtnLink } from "../../header/NavBarElements";
+import { NavBtnLink } from "../../header/HeaderElements";
 import { useState, useContext } from "react";
 import AuthContext from "../../../context/AuthContext";
 import styles from "./login.module.css";
@@ -18,6 +17,8 @@ export const Login = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  const emptyFields = values.username.length > 4 && values.password.length > 6;
+  console.log(emptyFields);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -27,8 +28,8 @@ export const Login = () => {
 
   return (
     <div className={styles["img-cover"]}>
-      <div className = {styles['form-container']}>
-        <div className = {styles['nav-pills']}>
+      <div className={styles["form-container"]}>
+        <div className={styles["nav-pills"]}>
           <ul
             className="nav nav-pills nav-justified mb-3"
             id="ex1"
@@ -55,13 +56,11 @@ export const Login = () => {
                 <input
                   type="text"
                   name="username"
+                  id="username"
                   className="form-control"
                   onChange={changeHandler}
                 />
-                <label
-                  htmlFor="name"
-                  className = {styles['input-label']}
-                >
+                <label htmlFor="username" className={styles["input-label"]}>
                   Username
                 </label>
               </div>
@@ -70,38 +69,23 @@ export const Login = () => {
                 <input
                   type="password"
                   name="password"
+                  id="password"
                   className="form-control"
                   onChange={changeHandler}
                 />
-                <label
-                  className="form-label"
-                  htmlFor="password"
-                  style={{ color: "black", fontWeight: "bold" }}
-                >
+                <label htmlFor="password" className={styles["input-label"]}>
                   Password
                 </label>
               </div>
 
-              <div style = {{display: "flex", justifyContent: "center"}}>
+              <div style={{ display: "flex", justifyContent: "center" }}>
                 <button
                   type="submit"
-                  className= {styles['login-btn']}
+                  className={styles["login-btn"]}
+                  disabled={!emptyFields}
                 >
                   Sign in
                 </button>
-              </div>
-
-              <div style={{ width: "20%" }} className="text-center">
-                <div style={{ color: "black", fontWeight: "bold" }}>
-                  Not a member?{" "}
-                  <div style={{ display: "inline-block" }}>
-                    <Link to="/register">
-                      <span className = {styles.register}>
-                        Register
-                      </span>
-                    </Link>
-                  </div>
-                </div>
               </div>
             </form>
           </div>

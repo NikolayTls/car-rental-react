@@ -2,9 +2,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 export const CarItemModal = ({ onHide, show, cars }) => {
+  console.log(cars);
   return (
     <Modal
-      show = {show}
+      show={show}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -12,15 +13,18 @@ export const CarItemModal = ({ onHide, show, cars }) => {
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           {cars.name}
+          <div>Category: {cars.category.category_name}</div>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <h4>Car Information</h4>
+        <ul>
+          <li>Horse Power : {cars.category.Power}</li>
+          <li>Dour Amount : {cars.category.baggage_amount}</li>
+          <li>Driver Age : {cars.category.driver_age}</li>
+          <li>Horse Power : {cars.category.Power}</li>
+          <li>Max. Occupants : {cars.category.occupant_amount}</li>
+        </ul>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={onHide}>Close</Button>

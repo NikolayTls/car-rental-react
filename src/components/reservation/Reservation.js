@@ -28,7 +28,7 @@ export const Reservation = () => {
 
   let navigate = useNavigate();
 
-  let { reservationId } = useParams();
+  let { reservationId, carId } = useParams();
 
   const [price, setPrice] = useState(0);
 
@@ -42,6 +42,8 @@ export const Reservation = () => {
     }));
   };
 
+  const currentDate = new Date();
+
   useEffect(() => {
     data.getCars().then((result) => setCars(result));
     data.getCities().then((result) => setCities(result));
@@ -54,7 +56,15 @@ export const Reservation = () => {
           setPrice(result.price);
         });
     }
-  }, [reservationId]);
+
+    if(carId){
+     data.getCars().then(result => setValues(state => ({
+
+      ...state,
+      car : result.name
+
+     })))}
+  }, [reservationId, carId]);
 
   useEffect(() => {
     let [city] = cities.filter((x) => x.name === values.city);
@@ -135,11 +145,17 @@ export const Reservation = () => {
   };
 
   return (
-    <>
-      {reservationId && (
+    <div style={{ marginTop: "100px" }}>
+      {reservationId ? (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <h4 style={{ fontSize: "30px", fontWeight: "bold", color: "black" }}>
             Edit Reservation
+          </h4>
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <h4 style={{ fontSize: "30px", fontWeight: "bold", color: "black" }}>
+            Make a Reservation
           </h4>
         </div>
       )}
@@ -218,6 +234,7 @@ export const Reservation = () => {
                 value={date_pick}
                 onChange={setDatePick}
                 onCalendarClose={() => checkDatePick(date_pick)}
+                minDate = {currentDate}
               />
               <h4 style={{ marginTop: "15px", color: "red" }}>
                 Pickup date cannot be after the dropoff date
@@ -312,6 +329,7 @@ export const Reservation = () => {
                 value={date_drop}
                 onChange={setDateDrop}
                 onCalendarClose={() => checkDateDrop(date_drop)}
+                minDate = {date_pick}
               />
             </div>
           )}
@@ -333,6 +351,6 @@ export const Reservation = () => {
           Submit
         </Button>
       </Form>
-    </>
+    </div>
   );
 };

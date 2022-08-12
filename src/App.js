@@ -7,6 +7,7 @@ import { MyReservations } from "./components/my-reservations/MyReservations";
 import { Login } from "./components/common/login/Login";
 import { Register } from "./components/common/register/Register";
 import { AuthProvider } from "./context/AuthContext";
+import { TestList } from "./components/test/TestList";
 
 import PrivateRoute from "./utils/PrivateRoute";
 
@@ -17,12 +18,10 @@ function App() {
     <AuthProvider>
       <Header />
 
-      <main
-        style={{ marginTop: "65px", marginLeft: "20px", marginRight: "20px"}}
-      >
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/cars" element={<CarList />} />
+          <Route path="/cars" element={<TestList />} />
           <Route
             path="/reservation"
             element={
@@ -43,11 +42,15 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/reservation/selectedCar/:carId"
+            element={<Reservation />}
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </main>
-      <div style = {{marginTop:"250px"}}>
+      <div style={{ marginTop: "250px" }}>
         <Footer />
       </div>
     </AuthProvider>

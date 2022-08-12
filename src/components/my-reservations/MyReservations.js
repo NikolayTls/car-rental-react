@@ -28,7 +28,7 @@ export const MyReservations = () => {
   };
 
   return (
-      <Row>
+      <Row style = {{marginTop: "100px"}}>
         <Col md>
           <div style={{ textAlign: "center", marginBottom: "25px" }}>
             <h3>My Reservations</h3>

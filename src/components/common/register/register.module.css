@@ -24,8 +24,6 @@
   color: #010606;
 }
 
-
-
 .form-container {
   width: 40%;
   height: 60%;
@@ -43,4 +41,14 @@
   margin-top: 15px;
   border-bottom: 1px solid black;
   padding-bottom: 7px;
+}
+
+.input-label {
+  color: black;
+  font-weight: bold;
+}
+
+
+button:disabled {
+  background-color: lightgray;
 }
